@@ -1,0 +1,1 @@
+include ':app', ':moudle_user', ':moudle_home', ':lib_asset', ':lib_common', ':moudle_base'
