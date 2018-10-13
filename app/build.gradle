@@ -1,26 +1,28 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-aspectjx'
 
-import org.aspectj.bridge.IMessage
-import org.aspectj.bridge.MessageHandler
-import org.aspectj.tools.ajc.Main
+//import org.aspectj.bridge.IMessage
+//import org.aspectj.bridge.MessageHandler
+//import org.aspectj.tools.ajc.Main
 
 // ************ aspectJ ************
 buildscript {
-
+    ext.kotlin_version = '1.2.51'
     repositories {
-        mavenCentral()
+        mavenLocal()
+
+        google()
+        jcenter() {
+            url 'http://jcenter.bintray.com/'
+        }
     }
 
     dependencies {
-        classpath 'org.aspectj:aspectjtools:1.8.1'
+        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.2'
+        classpath 'com.android.tools.build:gradle:3.0.1'
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
-
 }
-
-repositories {
-    mavenCentral()
-}
-
 // ************ aspectJ ************
 
 android {
@@ -34,9 +36,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
         //aRouter
         javaCompileOptions {
+
+
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
             }
@@ -69,52 +72,8 @@ dependencies {
     compile project(':moudle_home')
     compile project(':moudle_user')
 
-    // ************ aspectJ ************
-    compile 'org.aspectj:aspectjrt:1.8.1'
-    // ************ aspectJ ************
+    api 'com.android.support:appcompat-v7:26.0.0'
+    api 'org.aspectj:aspectjrt:1.8.9'
+
 }
 
-// ************ aspectJ ************
-final def log = project.logger
-final def variants = project.android.applicationVariants
-
-variants.all { variant ->
-    if (!variant.buildType.isDebuggable()) {
-        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
-        return;
-    }
-
-    JavaCompile javaCompile = variant.javaCompile
-    javaCompile.doLast {
-        String[] args = ["-showWeaveInfo",
-                         "-1.5",
-                         "-inpath", javaCompile.destinationDir.toString(),
-                         "-aspectpath", javaCompile.classpath.asPath,
-                         "-d", javaCompile.destinationDir.toString(),
-                         "-classpath", javaCompile.classpath.asPath,
-                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
-        log.debug "ajc args: " + Arrays.toString(args)
-
-        MessageHandler handler = new MessageHandler(true);
-        new Main().run(args, handler);
-        for (IMessage message : handler.getMessages(null, true)) {
-            switch (message.getKind()) {
-                case IMessage.ABORT:
-                case IMessage.ERROR:
-                case IMessage.FAIL:
-                    log.error message.message, message.thrown
-                    break;
-                case IMessage.WARNING:
-                    log.warn message.message, message.thrown
-                    break;
-                case IMessage.INFO:
-                    log.info message.message, message.thrown
-                    break;
-                case IMessage.DEBUG:
-                    log.debug message.message, message.thrown
-                    break;
-            }
-        }
-    }
-}
-// ************ aspectJ ************

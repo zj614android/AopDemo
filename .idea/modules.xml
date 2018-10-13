@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AopDemo.iml" filepath="$PROJECT_DIR$/AopDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_asset/lib_asset.iml" filepath="$PROJECT_DIR$/lib_asset/lib_asset.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_common/lib_common.iml" filepath="$PROJECT_DIR$/lib_common/lib_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moudle_base/moudle_base.iml" filepath="$PROJECT_DIR$/moudle_base/moudle_base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moudle_home/moudle_home.iml" filepath="$PROJECT_DIR$/moudle_home/moudle_home.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moudle_user/moudle_user.iml" filepath="$PROJECT_DIR$/moudle_user/moudle_user.iml" />
+    </modules>
+  </component>
+</project>

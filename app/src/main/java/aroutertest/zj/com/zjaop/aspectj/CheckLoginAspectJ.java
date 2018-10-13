@@ -25,10 +25,10 @@ import org.aspectj.lang.annotation.Pointcut;
         System.out.println(TAG + "@handleMethod");
     }
 
-    @Before("handleMethod()")
-    public void before(JoinPoint point) {
-        System.out.println(TAG + "@Before");
-    }
+//    @Before("handleMethod()")
+//    public void before(JoinPoint point) {
+//        System.out.println(TAG + "@Before");
+//    }
 
     @Around("handleMethod()")
     public void around(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -52,20 +52,20 @@ import org.aspectj.lang.annotation.Pointcut;
 //        System.out.println("耗时：" + dx + "ms");
     }
 
-    @After("handleMethod()")
-    public void after(JoinPoint point) {
-        System.out.println(TAG + "@After");
-    }
-
-    @AfterReturning("handleMethod()")
-    public void afterReturning(JoinPoint point, Object returnValue) {
-        System.out.println(TAG + "@AfterReturning");
-    }
-
-    @AfterThrowing(value = "handleMethod()", throwing = "ex")
-    public void afterThrowing(Throwable ex) {
-        System.out.println(TAG + "@afterThrowing");
-        System.out.println("ex = " + ex.getMessage());
-    }
+//    @After("handleMethod()")
+//    public void after(JoinPoint point) {
+//        System.out.println(TAG + "@After");
+//    }
+//
+//    @AfterReturning("handleMethod()")
+//    public void afterReturning(JoinPoint point, Object returnValue) {
+//        System.out.println(TAG + "@AfterReturning");
+//    }
+//
+//    @AfterThrowing(value = "handleMethod()", throwing = "ex")
+//    public void afterThrowing(Throwable ex) {
+//        System.out.println(TAG + "@afterThrowing");
+//        System.out.println("ex = " + ex.getMessage());
+//    }
 
 }

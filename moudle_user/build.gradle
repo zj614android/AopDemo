@@ -45,4 +45,7 @@ dependencies {
     //aRouter
     compile "com.alibaba:arouter-api:$rootProject.arouterApiVersion"
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
+
+    api 'com.android.support:appcompat-v7:26.0.0'
+    api 'org.aspectj:aspectjrt:1.8.9'
 }
